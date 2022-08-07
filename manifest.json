@@ -1,6 +1,13 @@
 {
   "manifest_version": 3,
+  "content_scripts": [
+    {
+      "js": ["src/content.js"],
+      "matches": ["https://meet.google.com/*"]
+    }
+  ],
   "name": "CRXJS React Vite Example",
   "version": "1.0.0",
-  "action": { "default_popup": "index.html" }
+  "action": { "default_popup": "index.html" },
+  "permissions": ["storage", "unlimitedStorage"]
 }

@@ -9,7 +9,7 @@ function App() {
     return (
         <div className="App">
             {/*<Label children={"labels"}/>*/}
-            <Heading tag={"h1"} visualLevel={2} className={'test'}>visualLevel2</Heading>
+            <Heading tag={"h1"} visualLevel={4} className={'test'}>visualLevel2</Heading>
             <Heading>test</Heading>
         </div>
     )

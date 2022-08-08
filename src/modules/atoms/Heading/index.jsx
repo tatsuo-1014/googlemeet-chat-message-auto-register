@@ -1,5 +1,5 @@
 import React from "react";
-import headingStyle from '../../../assets/scss/atoms/heading.module.css'
+import headingStyle from './heading.module.css'
 
 /**
  *

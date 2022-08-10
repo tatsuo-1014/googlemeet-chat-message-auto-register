@@ -4,16 +4,24 @@ import './App.css'
 import Heading from './modules/atoms/Heading/index'
 import Txt, {TxtInfo,TxtWarning} from "./modules/atoms/Txt";
 import Header from "./modules/organisms/Header";
-//import Label from "./modules/atoms/Label";
+import List from "./modules/organisms/List"
 
 function App() {
     // const [count, setCount] = useState(0)
     return (
         <div className="App">
-            {/*<Label children={"labels"}/>*/}
             <Header></Header>
-            <TxtWarning size={'l'}>txtWarning</TxtWarning>
-            <Heading tag={"h1"} visualLevel={4} className={''}>visualLevel2</Heading>
+
+            <div className={'lists'}>
+                <List></List>
+                <List></List>
+                <List></List>
+                <List></List>
+                <List></List>
+                <List></List>
+            </div>
+
+
             {/*<Heading>test</Heading>*/}
         </div>
     )

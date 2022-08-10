@@ -19,3 +19,16 @@
 .level--4 {
   font-size: 28px;
 }
+
+.level--5 {
+  font-size: 32px;
+}
+
+.level--6 {
+  font-size: 36px;
+}
+
+.underlined{
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: .5rem;
+}

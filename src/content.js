@@ -1,6 +1,5 @@
 export {}
-console.log('content')
-console.log('content2')
+
 const MESSAGE_PARENTS_CLASS = 'GDhqjd'
 const MESSAGE_CHILDREN_CLASS = 'oIy2qc'
 const time = new Date().getTime();

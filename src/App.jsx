@@ -5,6 +5,8 @@ import Heading from './modules/atoms/Heading/index'
 import Txt, {TxtInfo,TxtWarning} from "./modules/atoms/Txt";
 import Header from "./modules/organisms/Header";
 import List from "./modules/organisms/List"
+import Message from "./modules/organisms/Message";
+
 
 function App() {
     // const [count, setCount] = useState(0)
@@ -12,15 +14,16 @@ function App() {
         <div className="App">
             <Header></Header>
 
-            <div className={'lists'}>
-                <List></List>
-                <List></List>
-                <List></List>
-                <List></List>
-                <List></List>
-                <List></List>
-            </div>
+            {/*<div className={'lists'}>*/}
+            {/*    <List></List>*/}
+            {/*    <List></List>*/}
+            {/*    <List></List>*/}
+            {/*    <List></List>*/}
+            {/*    <List></List>*/}
+            {/*    <List></List>*/}
+            {/*</div>*/}
 
+            <Message></Message>
 
             {/*<Heading>test</Heading>*/}
         </div>

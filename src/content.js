@@ -4,8 +4,8 @@ console.log('content2')
 const MESSAGE_PARENTS_CLASS = 'GDhqjd'
 const MESSAGE_CHILDREN_CLASS = 'oIy2qc'
 const time = new Date().getTime();
-let meetId = '';
-const messageBlocks = []
+const meetId = window.location.href.split('/').pop().match(/[^\?]+/)
+let messageBlocks = []
 
 // // 変更を監視するノードを選択
 // const targetNode = document.getElementsByClassName('ME4pNd')[0];
@@ -39,6 +39,7 @@ const callback = function(mutationsList, observer) {
                 messages: [addedNode.childNodes[1].innerText]
             })
             console.log(messageBlocks)
+            updateChromeStorage(messageBlocks)
         }else if(
             addedNode.dataset.formattedTimestamp != "" &&
             addedNode.className === MESSAGE_CHILDREN_CLASS )
@@ -48,6 +49,7 @@ const callback = function(mutationsList, observer) {
                 addedNode.innerText
             );
             console.log(messageBlocks)
+            updateChromeStorage(messageBlocks)
         }
     })
     // Use traditional 'for loops' for IE 11
@@ -63,14 +65,27 @@ const callback = function(mutationsList, observer) {
 
 const observer = new MutationObserver(callback);
 
-chrome.storage.local.set({'test': 1}, function () {
 
-});
-
-chrome.storage.local.get(null, function (result) {
+// chrome.storage.local.set({'test': 1}, function () {
+//
+// });
+//
+chrome.storage.local.get('meetHistories', function (result) {
     // func
     console.log(result)
 });
+
+
+const updateChromeStorage = (messageBlocks) => {
+    const obj = {
+        meetId:meetId,
+        time:time,
+        messageBlocks:messageBlocks
+    }
+    chrome.storage.local.set({'meetHistories': obj}, function () {
+        console.log('messageBlocksを更新しました。')
+    });
+}
 
 const interval = setInterval(() => {
     const chatDom = document.getElementsByClassName("z38b6")[0];

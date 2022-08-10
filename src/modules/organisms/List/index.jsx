@@ -6,7 +6,7 @@ import styles from './list.module.scss';
 
 export const List = ({className,...props}) => {
     return(
-        <div className={[styles.list , className].join(' ')}>
+        <div className={[styles.list , className].join(' ')} {...props} >
             <Heading tag={'h2'} visualLevel={3} >chatのタイトル</Heading>
             <Txt size={'m'}>chatのID</Txt>
             <Txt size={'s'}>chatの日付</Txt>

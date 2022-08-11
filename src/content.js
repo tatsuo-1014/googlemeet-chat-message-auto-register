@@ -17,7 +17,7 @@ const config = {
     characterData: true
 };
 
-const observer = new MutationObserver(callback);
+
 
 // 変更が発見されたときに実行されるコールバック関数
 const callback = function(mutationsList, observer) {
@@ -64,15 +64,17 @@ const callback = function(mutationsList, observer) {
     // }
 };
 
+const observer = new MutationObserver(callback);
+
 
 // chrome.storage.local.set({'test': 1}, function () {
 //
 // });
 //
-// chrome.storage.local.get('meetHistories', function (result) {
-//     // func
-//     console.log(result)
-// });
+chrome.storage.local.get('meetHistories', function (result) {
+    // func
+    console.log(result)
+});
 
 
 const updateChromeStorage = (messageBlocks) => {

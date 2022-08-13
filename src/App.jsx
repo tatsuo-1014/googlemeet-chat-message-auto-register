@@ -24,7 +24,8 @@ import Arrow from "./modules/atoms/Arrow";
 function App() {
     // const [count, setCount] = useState(0)
     const [meetHistories, setMeetHistories] = useState([])
-    const [showMessage,setShowMessage] = useState(false)
+    const [showMessage, setShowMessage] = useState(false)
+    const [messageId,setMessageId]= useState(null)
 
     const sampleObj = {
         "meetId": [
@@ -57,16 +58,8 @@ function App() {
     // }
 
     useEffect(() => {
-        // chrome.storage.local.get(null, function (all) {
-        //     // func
-        //     console.log(all)
-        //     setMeetHistories(all)
-        // });
-
         //sample
         //setMeetHistories([...meetHistories,sampleObj])
-
-
         chrome.storage.local.get(null, function (result) {
             // func
             // console.log(result)
@@ -78,12 +71,7 @@ function App() {
         // console.log('useEffect')
     }, []);
 
-
-    const loop = () => {
-        meetHistories.map(item=>console.log(item))
-    }
-
-    const onHandleClick = ()=>{
+    const onHandleClick = () => {
         setShowMessage(!showMessage)
         // alert("ok")
     }
@@ -93,9 +81,11 @@ function App() {
             <Header></Header>
 
             {
-                showMessage?
+                showMessage ?
                     <div className={"arrowWrap"}>
-                        <Arrow onClick={()=>{onHandleClick()}}></Arrow>
+                        <Arrow onClick={() => {
+                            onHandleClick()
+                        }}></Arrow>
                     </div>
                     :
                     ""
@@ -110,10 +100,13 @@ function App() {
             {/*        })*/}
             {/*    }*/}
             {/*</ul>*/}
+
             {
                 showMessage ?
-                    <Message></Message>:
-                    <Lists meets={meetHistories} className={'lists'} onClick={()=>{onHandleClick()}}></Lists>
+                    <Message meets={meetHistories} className={""} messageId={"jwv-xrgf-tyz"}></Message> :
+                    <Lists meets={meetHistories} className={'lists'} onClick={() => {
+                        onHandleClick()
+                    }}></Lists>
             }
 
 

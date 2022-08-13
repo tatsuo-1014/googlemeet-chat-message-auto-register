@@ -6,7 +6,7 @@ export const Header = ({className,...props}) =>{
     return(
         <header className={[styles.header,className].join(' ')}>
             <div className={styles.header__inner}>
-                <Txt size={'l'} className={'header__txt'}>MEETのchat履歴LIST</Txt>
+                <Txt size={'l'} className={'header__txt'}>MEETのchat履歴</Txt>
             </div>
         </header>
     )

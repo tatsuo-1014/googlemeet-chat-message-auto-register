@@ -6,15 +6,18 @@ import styles from './list.module.scss';
 
 export const List = ({className,...props}) => {
 
+    const meetId = props.meetId
+    const meetTime = props.time
+    // const messageBlocks = props
     const onClickHandler = () => {
-        alert('ok')
+        alert(meetId)
     }
 
     return(
         <div className={[styles.list , className].join(' ')} {...props}  onClick={()=>{onClickHandler()}}>
             <Heading tag={'h2'} visualLevel={3} >chatのタイトル</Heading>
-            <Txt size={'m'}>chatのID</Txt>
-            <Txt size={'s'}>chatの日付</Txt>
+            <Txt size={'m'}>chatのIDは{meetId}です</Txt>
+            <Txt size={'s'}>chatの日付は{meetTime}です</Txt>
         </div>
     )
 

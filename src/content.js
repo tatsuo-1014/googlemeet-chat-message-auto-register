@@ -1,8 +1,10 @@
-export {}
+// export {}
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 
 const MESSAGE_PARENTS_CLASS = 'GDhqjd'
 const MESSAGE_CHILDREN_CLASS = 'oIy2qc'
-const time = new Date().getTime();
+let time = new Date().getTime();
 const meetId = window.location.href.split('/').pop().match(/[^\?]+/)
 let messageBlocks = []
 
@@ -70,20 +72,21 @@ const observer = new MutationObserver(callback);
 // chrome.storage.local.set({'test': 1}, function () {
 //
 // });
-//
-chrome.storage.local.get('meetHistories', function (result) {
+
+chrome.storage.local.get(null, function (result) {
     // func
     console.log(result)
 });
 
 
 const updateChromeStorage = (messageBlocks) => {
-    const obj = {
+    let obj = {}
+        obj[time] = {
         meetId:meetId,
         time:time,
         messageBlocks:messageBlocks
     }
-    chrome.storage.local.set({'meetHistories': obj}, function () {
+    chrome.storage.local.set(obj, function () {
         console.log('messageBlocksを更新しました。')
     });
 }

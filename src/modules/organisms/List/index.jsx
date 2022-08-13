@@ -17,14 +17,14 @@ export const List = ({className, ...props}) => {
 
     return (
         <div className={[styles.list, className].join(' ')} {...props} onClick={() => {
-            onClickHandler()
+            // onClickHandler()
         }}>
             <Heading tag={'h2'} visualLevel={3}>chatのタイトル</Heading>
             <Txt size={'m'}>chatのIDは{meetId}です</Txt>
             <Txt size={'s'}>chatは{dateTime.toLocaleDateString('ja-JP')}に記録されたものです。</Txt>
-            {messageBlocks.map(contents=>(
-                <Txt size={'s'}>{contents}</Txt>
-            ))}
+            {/*{messageBlocks.map(contents => (*/}
+            {/*    <Txt size={'s'}>{contents}</Txt>*/}
+            {/*))}*/}
         </div>
     )
 

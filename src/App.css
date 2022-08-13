@@ -51,3 +51,10 @@
 .read-the-docs {
   color: #888;
 }
+
+.arrowWrap{
+  /*background-color: red;*/
+  text-align: left;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}

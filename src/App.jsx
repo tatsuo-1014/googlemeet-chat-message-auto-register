@@ -9,6 +9,7 @@ import Header from "./modules/organisms/Header";
 import List from "./modules/organisms/List"
 import Lists from "./modules/organisms/Lists";
 import Message from "./modules/organisms/Message";
+import Arrow from "./modules/atoms/Arrow";
 
 // const getSyncStorage = (key = null) => new Promise(resolve => {
 //     chrome.storage.local.get(key, resolve);
@@ -23,6 +24,7 @@ import Message from "./modules/organisms/Message";
 function App() {
     // const [count, setCount] = useState(0)
     const [meetHistories, setMeetHistories] = useState([])
+    const [showMessage,setShowMessage] = useState(false)
 
     const sampleObj = {
         "meetId": [
@@ -70,7 +72,7 @@ function App() {
             // console.log(result)
             // addMeetHistories(result)
             // setMeetHistories(result)
-            setMeetHistories(Object.values(result))
+            setMeetHistories(Object.values(result).reverse())
             // setMeetHistories(result.filter((item)=>"meetId" in item))
         });
         // console.log('useEffect')
@@ -81,10 +83,24 @@ function App() {
         meetHistories.map(item=>console.log(item))
     }
 
+    const onHandleClick = ()=>{
+        setShowMessage(!showMessage)
+        // alert("ok")
+    }
 
     return (
         <div className="App">
             <Header></Header>
+
+            {
+                showMessage?
+                    <div className={"arrowWrap"}>
+                        <Arrow onClick={()=>{onHandleClick()}}></Arrow>
+                    </div>
+                    :
+                    ""
+            }
+
             {/*<ul className={"lists"}>*/}
             {/*    {*/}
             {/*        meetHistories.map((item)=>{*/}
@@ -94,8 +110,12 @@ function App() {
             {/*        })*/}
             {/*    }*/}
             {/*</ul>*/}
+            {
+                showMessage ?
+                    <Message></Message>:
+                    <Lists meets={meetHistories} className={'lists'} onClick={()=>{onHandleClick()}}></Lists>
+            }
 
-            <Lists meets={meetHistories} className={'lists'}></Lists>
 
             {/*<div className={'lists'}>*/}
             {/*    <List></List>*/}

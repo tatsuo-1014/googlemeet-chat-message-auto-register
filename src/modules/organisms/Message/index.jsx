@@ -14,8 +14,8 @@ export const Message = ({meets,className,messageId,...props}) => {
     // const messageBlocks = meet.messageBlocks[0].messages
     const handleClick = () =>{
         // alert(JSON.stringify(messageBlocks))
-        alert(meet[0].messageBlocks.sender)
-        alert(messages.join().split(","))//メッセージブロック内のコメントを全て結合した配列
+        // alert(meet[0].messageBlocks.sender)
+        // alert(messages.join().split(","))//メッセージブロック内のコメントを全て結合した配列
         // messageBlocks.map(contents=>{
         //     alert(contents["messages"])
         // })

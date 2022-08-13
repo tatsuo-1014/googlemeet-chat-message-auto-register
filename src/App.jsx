@@ -25,7 +25,7 @@ function App() {
     // const [count, setCount] = useState(0)
     const [meetHistories, setMeetHistories] = useState([])
     const [showMessage, setShowMessage] = useState(false)
-    const [messageId,setMessageId]= useState(null)
+    const [messageId,setMessageId]= useState(String)
 
     const sampleObj = {
         "meetId": [
@@ -73,7 +73,12 @@ function App() {
 
     const onHandleClick = () => {
         setShowMessage(!showMessage)
-        // alert("ok")
+        // alert(this.messageId)
+    }
+
+    function getMeetId(meetId) {
+        setMessageId(meetId.toString())
+        // alert(meetId.toString())
     }
 
     return (
@@ -103,10 +108,11 @@ function App() {
 
             {
                 showMessage ?
-                    <Message meets={meetHistories} className={""} messageId={"jwv-xrgf-tyz"}></Message> :
+                    <Message meets={meetHistories} className={""} messageId={messageId}></Message>
+                    :
                     <Lists meets={meetHistories} className={'lists'} onClick={() => {
                         onHandleClick()
-                    }}></Lists>
+                    }} getData={getMeetId}></Lists>
             }
 
 

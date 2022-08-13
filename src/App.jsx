@@ -105,7 +105,7 @@ function App() {
             {/*    <List></List>*/}
             {/*    <List></List>*/}
             {/*</div>*/}
-            {/*<Message></Message>*/}
+            {/*<Message meets={meetHistories}></Message>*/}
         </div>
     )
 

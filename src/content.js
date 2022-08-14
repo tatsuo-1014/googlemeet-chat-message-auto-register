@@ -5,23 +5,9 @@ const meetId = window.location.href.split('/').pop().match(/[^\?]+/)
 let messageBlocks = []
 let meetTitle = String
 const referrer = document.referrer;
-
 const host = location.host
 
-chrome.storage.local.get("meetTitle", function (result) {
-    console.log("referrer",referrer)
-    const meetTitleSavedInChromeStorage = result.meetTitle
-    if(referrer === "https://calendar.google.com/"){
-        //googleカレンダーからきたユーザーの場合chrome.storage.localに保存されている値を代入
-        meetTitle = meetTitleSavedInChromeStorage
-    }else{
-        //直接URLを叩いてmeetにきたユーザーにはmeetIdを代入するようにする。
-        meetTitle = null
-    }
-});
-
-
-// // 変更を監視するノードを選択
+// 変更を監視するノードを選択
 // const targetNode = document.getElementsByClassName('ME4pNd')[0];
 
 // (変更を監視する) オブザーバーのオプション
@@ -32,6 +18,28 @@ const config = {
     characterData: true
 };
 
+// chrome.storage.local.set({'test': 1}, function () {
+//
+// });
+
+// chrome.storage.local.get(null, function (result) {
+//     // func
+//     console.log(result)
+// });
+
+
+const updateChromeStorage = (messageBlocks) => {
+    let obj = {}
+        obj[time] = {
+        meetTitle:meetTitle ?? meetId,
+        meetId:meetId,
+        time:time,
+        messageBlocks:messageBlocks
+    }
+    chrome.storage.local.set(obj, function () {
+        console.log('messageBlocksを更新しました。')
+    });
+}
 
 
 // 変更が発見されたときに実行されるコールバック関数
@@ -79,40 +87,35 @@ const callback = function(mutationsList, observer) {
     // }
 };
 
-const observer = new MutationObserver(callback);
 
 
-// chrome.storage.local.set({'test': 1}, function () {
-//
-// });
+if(host==='meet.google.com'){
+    console.log("meet!!")
 
-chrome.storage.local.get(null, function (result) {
-    // func
-    console.log(result)
-});
-
-
-const updateChromeStorage = (messageBlocks) => {
-    let obj = {}
-        obj[time] = {
-        meetTitle:meetTitle ?? meetId,
-        meetId:meetId,
-        time:time,
-        messageBlocks:messageBlocks
-    }
-    chrome.storage.local.set(obj, function () {
-        console.log('messageBlocksを更新しました。')
+    chrome.storage.local.get("meetTitle", function (result) {
+        console.log("referrer",referrer)
+        const meetTitleSavedInChromeStorage = result.meetTitle
+        if(referrer === "https://calendar.google.com/"){
+            //googleカレンダーからきたユーザーの場合chrome.storage.localに保存されている値を代入
+            meetTitle = meetTitleSavedInChromeStorage
+        }else{
+            //直接URLを叩いてmeetにきたユーザーにはmeetIdを代入するようにする。
+            meetTitle = null
+        }
     });
+    const observer = new MutationObserver(callback);
+
+    const interval = setInterval(() => {
+        const chatDom = document.getElementsByClassName("z38b6")[0];
+        if (chatDom) {
+            console.log('chatのdomが生成されました。')
+            observer.observe(chatDom, config);
+            clearInterval(interval);
+        }
+    }, 300)
 }
 
-const interval = setInterval(() => {
-    const chatDom = document.getElementsByClassName("z38b6")[0];
-    if (chatDom) {
-        console.log('chatのdomが生成されました。')
-        observer.observe(chatDom, config);
-        clearInterval(interval);
-    }
-}, 300)
+
 
 
 /**

@@ -63,11 +63,17 @@ function App() {
         //setMeetHistories([...meetHistories,sampleObj])
         chrome.storage.local.get(null, function (result) {
             // func
-            // console.log(result)
-            // addMeetHistories(result)
-            // setMeetHistories(result)
+            /**
+             * googleカレンダーからのmeetTitleを受け渡す用のobjは削除してstateにセットする。
+             * @param obj
+             * @returns {Pick<*, Exclude<keyof *, "meetTitle">>}
+             */
+            const removeMeetTitleObj = (obj) => {
+                const { meetTitle, ...res } = obj
+                return res
+            }
+            result = removeMeetTitleObj(result)
             setMeetHistories(Object.values(result).reverse())
-            // setMeetHistories(result.filter((item)=>"meetId" in item))
         });
         // console.log('useEffect')
     }, []);

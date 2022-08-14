@@ -6,8 +6,9 @@
       "matches": ["https://meet.google.com/*","https://calendar.google.com/*"]
     }
   ],
-  "name": "CRXJS React Vite Example",
+  "name": "Google Meet Chat Message Registrar",
   "version": "1.0.0",
   "action": { "default_popup": "index.html" },
-  "permissions": ["storage", "unlimitedStorage"]
+  "permissions": ["storage", "unlimitedStorage"],
+  "description": "meetのchatのメッセージを自動で記録するchrome拡張です。meet内でchatメッセージを開くと自動で内容を記録し、後で履歴一覧から確認することができます。"
 }

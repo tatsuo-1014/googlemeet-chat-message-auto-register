@@ -11,7 +11,7 @@ import Arrow from "./modules/atoms/Arrow";
 function App() {
     // const [count, setCount] = useState(0)
     const [meetHistories, setMeetHistories] = useState([])
-    const [showMessage, setShowMessage] = useState(false)
+    const [showDetailMessage, setShowMessage] = useState(false)
     // const [messageId, setMessageId] = useState(String)
     const [meetTime, setMeetTime] = useState(Number)
 
@@ -34,14 +34,14 @@ function App() {
     }, []);
 
     const onHandleClick = () => {
-        setShowMessage(!showMessage)
+        setShowMessage(!showDetailMessage)
         // alert(this.messageId)
     }
 
-    const getMeetId = (meetId) => {
-        setMessageId(meetId.toString())
-        // alert(meetId.toString())
-    }
+    // const getMeetId = (meetId) => {
+    //     setMessageId(meetId.toString())
+    //     // alert(meetId.toString())
+    // }
 
     const getMeetTime = (meetTime) => {
         setMeetTime(meetTime)
@@ -51,7 +51,7 @@ function App() {
         <div className="App">
             <Header></Header>
             {
-                showMessage ?
+                showDetailMessage ?
                     <div className={"arrowWrap"}>
                         <Arrow onClick={() => {
                             onHandleClick()
@@ -61,7 +61,7 @@ function App() {
                     ""
             }
             {
-                showMessage ?
+                showDetailMessage ?
                     <Message meets={meetHistories} className={""} meetTime={meetTime}></Message>
                     :
                     <Lists meets={meetHistories} className={'lists'} onClick={() => {

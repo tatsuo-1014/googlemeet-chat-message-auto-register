@@ -7,9 +7,9 @@ import List from "../List";
 export const Message = ({meets,className,meetTime,...props}) => {
     // let meet = []
     const meet = meets.filter((meet)=>{return meet.time === meetTime})
-    const meetTitle = meet[0].meetTitle
+    // const meetTitle = meet[0].meetTitle
     const messageBlocks = meet[0].messageBlocks
-    const messages = messageBlocks.map(contents=>contents["messages"])
+    // const messages = messageBlocks.map(contents=>contents["messages"])
     const urlPattern = /^(https?|ftp)(:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+)/
     // const messages = JSON.stringify(meet.messageBlocks[0].messages)
     // const messageBlocks = meet.messageBlocks[0].messages
@@ -34,7 +34,6 @@ export const Message = ({meets,className,meetTime,...props}) => {
                                     <Txt size={'s'}>{contents['sender']}</Txt>
                                     <Txt size={'s'}>{contents['timeStamp']}</Txt>
                                 </div>
-                                {/*<p>{contents['messages']}</p>*/}
                                 <div>
                                     {contents['messages'].map(comment=>{
                                         if(urlPattern.test(comment) == true){

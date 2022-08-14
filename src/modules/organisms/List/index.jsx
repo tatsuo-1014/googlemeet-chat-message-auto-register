@@ -9,10 +9,10 @@ export const List = ({className, ...props}) => {
     const meetTitle = props.meetTitle
     const meetId = props.meetId
     const meetTime = props.time
-    let dateTime = new Date(meetTime);
+    const dateTime = new Date(meetTime);
     const localDate = dateTime.toLocaleDateString('ja-JP')
     const localTime = dateTime.toLocaleTimeString('ja-JP')
-    const messageBlocks = props.messageBlocks[0].messages
+    // const messageBlocks = props.messageBlocks[0].messages
     // const messages = JSON.stringify(messageBlocks).split(',')
     // const onClickHandler = () => {
     //     // alert(messages[0])

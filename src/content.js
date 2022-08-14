@@ -1,3 +1,4 @@
+/*global chrome*/
 const MESSAGE_PARENTS_CLASS = 'GDhqjd'
 const MESSAGE_CHILDREN_CLASS = 'oIy2qc'
 let time = new Date().getTime();
@@ -27,7 +28,6 @@ const config = {
 //     console.log(result)
 // });
 
-
 const updateChromeStorage = (messageBlocks) => {
     let obj = {}
         obj[time] = {
@@ -41,9 +41,8 @@ const updateChromeStorage = (messageBlocks) => {
     });
 }
 
-
 // 変更が発見されたときに実行されるコールバック関数
-const callback = function(mutationsList, observer) {
+const mutationObserverCallback = function(mutationsList, observer) {
     mutationsList.filter((mutation) => mutation.type == "childList").forEach((mutation) => {
         if (mutation.addedNodes.length === 0) return;
         const addedNode = mutation.addedNodes[0];
@@ -87,13 +86,10 @@ const callback = function(mutationsList, observer) {
     // }
 };
 
-
-
 if(host==='meet.google.com'){
-    console.log("meet!!")
 
     chrome.storage.local.get("meetTitle", function (result) {
-        console.log("referrer",referrer)
+        // console.log("referrer",referrer)
         const meetTitleSavedInChromeStorage = result.meetTitle
         if(referrer === "https://calendar.google.com/"){
             //googleカレンダーからきたユーザーの場合chrome.storage.localに保存されている値を代入
@@ -103,7 +99,8 @@ if(host==='meet.google.com'){
             meetTitle = null
         }
     });
-    const observer = new MutationObserver(callback);
+
+    const observer = new MutationObserver(mutationObserverCallback);
 
     const interval = setInterval(() => {
         const chatDom = document.getElementsByClassName("z38b6")[0];
@@ -114,9 +111,6 @@ if(host==='meet.google.com'){
         }
     }, 300)
 }
-
-
-
 
 /**
  * google カレンダー内での処理
@@ -168,12 +162,3 @@ if(host==="calendar.google.com"){
         })
     }
 }
-
-
-
-
-
-
-
-
-

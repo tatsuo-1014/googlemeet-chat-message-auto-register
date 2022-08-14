@@ -3,6 +3,8 @@ import Txt from "../../atoms/Txt";
 import styles from "./header.module.css"
 
 export const Header = ({className,...props}) =>{
+
+
     return(
         <header className={[styles.header,className].join(' ')}>
             <div className={styles.header__inner}>

@@ -12,24 +12,8 @@ function App() {
     // const [count, setCount] = useState(0)
     const [meetHistories, setMeetHistories] = useState([])
     const [showMessage, setShowMessage] = useState(false)
-    const [messageId, setMessageId] = useState(String)
+    // const [messageId, setMessageId] = useState(String)
     const [meetTime, setMeetTime] = useState(Number)
-    const sampleObj = {
-        "meetId": [
-            "tap-wxgf-qoq"
-        ],
-        "messageBlocks": [
-            {
-                "messages": [
-                    "aaaa",
-                    "ぬぬうぬん"
-                ],
-                "sender": "あなた",
-                "timeStamp": "19:03"
-            }
-        ],
-        "time": 1660384945543
-    }
 
     useEffect(() => {
         chrome.storage.local.get(null, function (result) {

@@ -4,10 +4,10 @@ import Heading from "../../atoms/Heading";
 import styles from "./message.module.scss"
 import List from "../List";
 
-export const Message = ({meets,className,messageId,...props}) => {
+export const Message = ({meets,className,meetTime,...props}) => {
 
     // let meet = []
-    const meet = meets.filter((meet)=>{return meet.meetId.toString() === messageId})
+    const meet = meets.filter((meet)=>{return meet.time === meetTime})
     const messageBlocks = meet[0].messageBlocks
     const messages = messageBlocks.map(contents=>contents["messages"])
     // const messages = JSON.stringify(meet.messageBlocks[0].messages)

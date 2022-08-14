@@ -20,7 +20,7 @@ export const List = ({className, ...props}) => {
 
 
     return (
-        <div className={[styles.list, className].join(' ')} {...props} onClick={()=>{props.getData(meetId)}}>
+        <div className={[styles.list, className].join(' ')} {...props} onClick={()=>{props.getData(meetTime)}}>
             <Heading tag={'h2'} visualLevel={3}>chatのタイトル</Heading>
             <Txt size={'m'}>chatのIDは{meetId}です</Txt>
             <Txt size={'s'}>このchatは{localDate + "  " + localTime}に記録されたものです。</Txt>

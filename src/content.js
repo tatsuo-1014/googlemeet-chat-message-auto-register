@@ -3,6 +3,23 @@ const MESSAGE_CHILDREN_CLASS = 'oIy2qc'
 let time = new Date().getTime();
 const meetId = window.location.href.split('/').pop().match(/[^\?]+/)
 let messageBlocks = []
+let meetTitle = String
+const referrer = document.referrer;
+
+const host = location.host
+
+chrome.storage.local.get("meetTitle", function (result) {
+    console.log("referrer",referrer)
+    const meetTitleSavedInChromeStorage = result.meetTitle
+    if(referrer === "https://calendar.google.com/"){
+        //googleカレンダーからきたユーザーの場合chrome.storage.localに保存されている値を代入
+        meetTitle = meetTitleSavedInChromeStorage
+    }else{
+        //直接URLを叩いてmeetにきたユーザーにはmeetIdを代入するようにする。
+        meetTitle = null
+    }
+});
+
 
 // // 変更を監視するノードを選択
 // const targetNode = document.getElementsByClassName('ME4pNd')[0];
@@ -78,6 +95,7 @@ chrome.storage.local.get(null, function (result) {
 const updateChromeStorage = (messageBlocks) => {
     let obj = {}
         obj[time] = {
+        meetTitle:meetTitle ?? meetId,
         meetId:meetId,
         time:time,
         messageBlocks:messageBlocks
@@ -99,29 +117,31 @@ const interval = setInterval(() => {
 
 /**
  * google カレンダー内での処理
+ * クリックしたパネルのmeetのタイトルをmeetTitleオブジェクトに格納してchrome.storage.localに保存する。
  * @type {NodeListOf<Element>}
  */
 
 let calenderPanels = undefined
-let meetTitle = String
 
 const setCalenderPanelNode = () => {
      calenderPanels = document.querySelectorAll(".NlL62b")
 }
-setCalenderPanelNode()
-
 
 const updateCalenderPanel = () =>{
+    let meetTitle = String
     for (let i = 0; i < calenderPanels.length; i++) {
         console.log(calenderPanels[i])
         calenderPanels[i].addEventListener('click',()=>{
             setTimeout(()=>{
                 const popUpBlock__meetBtn = document.getElementsByClassName("w1OTme")[0]
                 if(popUpBlock__meetBtn){
-                    console.log(document.getElementById("rAECCd"))
+                    //console.log(document.getElementById("rAECCd").textContent)
                     //ポップアップ内のmeetのボタンがあればその中のテキストをmeetTitleに使用する。
+                    const popUpBlock__meetBtn__txt = document.getElementById("rAECCd").textContent
                     popUpBlock__meetBtn.addEventListener('click',()=>{
-                        alert("okok!!")
+                        meetTitle = popUpBlock__meetBtn__txt
+                        chrome.storage.local.set({"meetTitle":meetTitle})
+                        // console.log(meetTitle)
                     })
                 }
             },800)
@@ -129,15 +149,24 @@ const updateCalenderPanel = () =>{
     }
 }
 
-updateCalenderPanel()
-//s
-const stateChangeBtn = document.querySelectorAll(".U26fgb")
-for (let i=0;i < stateChangeBtn.length;i++){
-    stateChangeBtn[i].addEventListener('click',()=>{
+const initCalendar =()=>{
+    setTimeout(()=>{
         setCalenderPanelNode()
         updateCalenderPanel()
-    })
+    },300)
 }
+
+if(host==="calendar.google.com"){
+    initCalendar()
+    const stateChangeBtn = document.querySelectorAll(".U26fgb")
+    for (let i=0;i < stateChangeBtn.length;i++){
+        stateChangeBtn[i].addEventListener('click',()=>{
+            initCalendar()
+        })
+    }
+}
+
+
 
 
 

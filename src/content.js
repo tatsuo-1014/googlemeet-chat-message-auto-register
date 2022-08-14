@@ -1,7 +1,3 @@
-// export {}
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-
 const MESSAGE_PARENTS_CLASS = 'GDhqjd'
 const MESSAGE_CHILDREN_CLASS = 'oIy2qc'
 let time = new Date().getTime();
@@ -99,3 +95,53 @@ const interval = setInterval(() => {
         clearInterval(interval);
     }
 }, 300)
+
+
+/**
+ * google カレンダー内での処理
+ * @type {NodeListOf<Element>}
+ */
+
+let calenderPanels = undefined
+let meetTitle = String
+
+const setCalenderPanelNode = () => {
+     calenderPanels = document.querySelectorAll(".NlL62b")
+}
+setCalenderPanelNode()
+
+
+const updateCalenderPanel = () =>{
+    for (let i = 0; i < calenderPanels.length; i++) {
+        console.log(calenderPanels[i])
+        calenderPanels[i].addEventListener('click',()=>{
+            setTimeout(()=>{
+                const popUpBlock__meetBtn = document.getElementsByClassName("w1OTme")[0]
+                if(popUpBlock__meetBtn){
+                    console.log(document.getElementById("rAECCd"))
+                    //ポップアップ内のmeetのボタンがあればその中のテキストをmeetTitleに使用する。
+                    popUpBlock__meetBtn.addEventListener('click',()=>{
+                        alert("okok!!")
+                    })
+                }
+            },800)
+        })
+    }
+}
+
+updateCalenderPanel()
+//s
+const stateChangeBtn = document.querySelectorAll(".U26fgb")
+for (let i=0;i < stateChangeBtn.length;i++){
+    stateChangeBtn[i].addEventListener('click',()=>{
+        setCalenderPanelNode()
+        updateCalenderPanel()
+    })
+}
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@
   "content_scripts": [
     {
       "js": ["src/content.js"],
-      "matches": ["https://meet.google.com/*"]
+      "matches": ["https://meet.google.com/*","https://calendar.google.com/*"]
     }
   ],
   "name": "CRXJS React Vite Example",

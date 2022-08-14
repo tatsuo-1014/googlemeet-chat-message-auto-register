@@ -30,12 +30,14 @@ export const Message = ({meets,className,messageId,...props}) => {
                         {/*<Txt size={"s"} className={[styles.messageBlock]}>test</Txt>*/}
                         {messageBlocks.map(contents => (
                             <div className={[styles.messageBlock]}>
-                                <p>{contents['timeStamp']}</p>
-                                <p>{contents['sender']}</p>
+                                <div className={styles.messageBlocksSenderInfo}>
+                                    <Txt size={'s'}>{contents['sender']}</Txt>
+                                    <Txt size={'s'}>{contents['timeStamp']}</Txt>
+                                </div>
                                 {/*<p>{contents['messages']}</p>*/}
                                 <div>
                                     {contents['messages'].map(comment=>(
-                                        <p>{comment}</p>
+                                        <Txt size={'s'}>{comment}</Txt>
                                     ))}
                                 </div>
                             </div>

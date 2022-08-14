@@ -9,6 +9,8 @@ export const List = ({className, ...props}) => {
     const meetId = props.meetId
     const meetTime = props.time
     let dateTime = new Date(meetTime);
+    const localDate = dateTime.toLocaleDateString('ja-JP')
+    const localTime = dateTime.toLocaleTimeString('ja-JP')
     const messageBlocks = props.messageBlocks[0].messages
     // const messages = JSON.stringify(messageBlocks).split(',')
     // const onClickHandler = () => {
@@ -21,7 +23,7 @@ export const List = ({className, ...props}) => {
         <div className={[styles.list, className].join(' ')} {...props} onClick={()=>{props.getData(meetId)}}>
             <Heading tag={'h2'} visualLevel={3}>chatのタイトル</Heading>
             <Txt size={'m'}>chatのIDは{meetId}です</Txt>
-            <Txt size={'s'}>chatは{dateTime.toLocaleDateString('ja-JP')}に記録されたものです。</Txt>
+            <Txt size={'s'}>このchatは{localDate + "  " + localTime}に記録されたものです。</Txt>
             {/*{messageBlocks.map(contents => (*/}
             {/*    <Txt size={'s'}>{contents}</Txt>*/}
             {/*))}*/}

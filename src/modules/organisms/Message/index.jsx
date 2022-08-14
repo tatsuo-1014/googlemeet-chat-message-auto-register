@@ -28,7 +28,6 @@ export const Message = ({meets,className,meetTime,...props}) => {
                 <div className={'content'}>
                     {/*<Heading tag={'h2'} visualLevel={3} >{meetTitle}</Heading>*/}
                     <div className={'messageBlocks'} onClick={()=>{handleClick()}}>
-                        {/*<Txt size={"s"} className={[styles.messageBlock]}>test</Txt>*/}
                         {messageBlocks.map(contents => (
                             <div className={[styles.messageBlock]}>
                                 <div className={styles.messageBlocksSenderInfo}>
@@ -46,32 +45,11 @@ export const Message = ({meets,className,meetTime,...props}) => {
                                     })}
                                 </div>
                             </div>
-                            // contents['messages']
                         ))}
                         {/*<div className={[styles.messageBlock]}>*/}
                         {/*    テキスト,<br/>*/}
                         {/*    テキスト,<br/>*/}
                         {/*    テキスト*/}
-                        {/*</div>*/}
-                        {/*<div className={[styles.messageBlock]}>*/}
-                        {/*    コメント2<br/>*/}
-                        {/*    テキスト,<br/>*/}
-                        {/*    コメント2*/}
-                        {/*</div>*/}
-                        {/*<div className={[styles.messageBlock]}>*/}
-                        {/*    コメント2<br/>*/}
-                        {/*    テキスト,<br/>*/}
-                        {/*    コメント2*/}
-                        {/*</div>*/}
-                        {/*<div className={[styles.messageBlock]}>*/}
-                        {/*    コメント2<br/>*/}
-                        {/*    テキスト,<br/>*/}
-                        {/*    コメント2*/}
-                        {/*</div>*/}
-                        {/*<div className={[styles.messageBlock]}>*/}
-                        {/*    コメント2<br/>*/}
-                        {/*    テキスト,<br/>*/}
-                        {/*    コメント2*/}
                         {/*</div>*/}
                     </div>
                 </div>

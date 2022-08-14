@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React, {useState} from 'react';
 import Txt from "../../atoms/Txt";
 import Heading from "../../atoms/Heading";
 import styles from './list.module.scss';
@@ -19,9 +19,10 @@ export const List = ({className, ...props}) => {
     //     alert(this.meetId)
     // }
 
-
     return (
-        <div className={[styles.list, className].join(' ')} {...props} onClick={()=>{props.getData(meetTime)}}>
+        <div className={[styles.list, className].join(' ')} {...props} onClick={() => {
+            props.getData(meetTime)
+        }}>
             <Heading tag={'h2'} visualLevel={2}>{meetTitle}</Heading>
             <Txt size={'m'}>chatのIDは{meetId}です</Txt>
             <Txt size={'s'}>このchatは{localDate + "  " + localTime}に記録されたものです。</Txt>
@@ -30,7 +31,6 @@ export const List = ({className, ...props}) => {
             {/*))}*/}
         </div>
     )
-
 
 }
 

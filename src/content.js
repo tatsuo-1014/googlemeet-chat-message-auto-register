@@ -127,7 +127,7 @@ const setCalenderPanelNode = () => {
 const updateCalenderPanel = () =>{
     let meetTitle = String
     for (let i = 0; i < calenderPanels.length; i++) {
-        console.log(calenderPanels[i])
+        // console.log(calenderPanels[i])
         calenderPanels[i].addEventListener('click',()=>{
             setTimeout(()=>{
                 const popUpBlock__meetBtn = document.getElementsByClassName("w1OTme")[0]

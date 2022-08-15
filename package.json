@@ -1,5 +1,5 @@
 {
-  "name": "chrome-extension-sample",
+  "name": "Google Meet Chat Message Registrar",
   "private": true,
   "version": "0.0.0",
   "type": "module",

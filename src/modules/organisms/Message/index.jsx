@@ -11,8 +11,17 @@ export const Message = ({meets,className,meetTime,...props}) => {
     const messageBlocks = meet[0].messageBlocks
     // const messages = messageBlocks.map(contents=>contents["messages"])
     const urlPattern = /^(https?|ftp)(:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+)/
+
+    const regexp_url = /(https?:\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+)/g;
+
     // const messages = JSON.stringify(meet.messageBlocks[0].messages)
     // const messageBlocks = meet.messageBlocks[0].messages
+
+    const replaceCommentToTxtLink = (comment) => {
+        let linkedComment = comment.replace(regexp_url, '<a href="$1" target="_blank">$1</a>');
+        return linkedComment
+    }
+
     const handleClick = () =>{
         // alert(JSON.stringify(messageBlocks))
         // alert(meet[0].messageBlocks.sender)
@@ -39,7 +48,7 @@ export const Message = ({meets,className,meetTime,...props}) => {
                                         if(urlPattern.test(comment) == true){
                                             return <a href={comment} target={"_blank"}><Txt>{comment}</Txt></a>
                                         }else{
-                                            return <Txt>{comment}</Txt>
+                                            return <Txt dangerouslySetInnerHTML={{ __html: replaceCommentToTxtLink(comment) }}></Txt>
                                         }
                                     })}
                                 </div>

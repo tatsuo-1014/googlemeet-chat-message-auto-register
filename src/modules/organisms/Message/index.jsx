@@ -4,25 +4,29 @@ import Heading from "../../atoms/Heading";
 import styles from "./message.module.scss"
 import List from "../List";
 
-export const Message = ({meets,className,meetTime,...props}) => {
+export const Message = ({meets, className, meetTime, ...props}) => {
     // let meet = []
-    const meet = meets.filter((meet)=>{return meet.time === meetTime})
+    const meet = meets.filter((meet) => {
+        return meet.time === meetTime
+    })
     // const meetTitle = meet[0].meetTitle
     const messageBlocks = meet[0].messageBlocks
     // const messages = messageBlocks.map(contents=>contents["messages"])
     const urlPattern = /^(https?|ftp)(:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+)/
 
-    const regexp_url = /(https?:\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+)/g;
-
     // const messages = JSON.stringify(meet.messageBlocks[0].messages)
     // const messageBlocks = meet.messageBlocks[0].messages
 
+    /**
+     * @param comment
+     * @returns {*}
+     */
     const replaceCommentToTxtLink = (comment) => {
-        let linkedComment = comment.replace(regexp_url, '<a href="$1" target="_blank">$1</a>');
-        return linkedComment
+        const regexp_url = /(https?:\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+)/g;
+        return comment.replace(regexp_url, '<a href="$1" target="_blank">$1</a>');
     }
 
-    const handleClick = () =>{
+    const handleClick = () => {
         // alert(JSON.stringify(messageBlocks))
         // alert(meet[0].messageBlocks.sender)
         // alert(messages.join().split(","))//メッセージブロック内のコメントを全て結合した配列
@@ -32,11 +36,12 @@ export const Message = ({meets,className,meetTime,...props}) => {
     }
 
     return (
-        <div className={[styles.message,className].join(' ')}>
+        <div className={[styles.message, className].join(' ')}>
             <div className={[styles.message__inner]}>
                 <div className={'content'}>
-                    {/*<Heading tag={'h2'} visualLevel={3} >{meetTitle}</Heading>*/}
-                    <div className={'messageBlocks'} onClick={()=>{handleClick()}}>
+                    <div className={'messageBlocks'} onClick={() => {
+                        handleClick()
+                    }}>
                         {messageBlocks.map(contents => (
                             <div className={[styles.messageBlock]}>
                                 <div className={styles.messageBlocksSenderInfo}>
@@ -44,21 +49,17 @@ export const Message = ({meets,className,meetTime,...props}) => {
                                     <Txt size={'s'}>{contents['timeStamp']}</Txt>
                                 </div>
                                 <div>
-                                    {contents['messages'].map(comment=>{
-                                        if(urlPattern.test(comment) == true){
+                                    {contents['messages'].map(comment => {
+                                        if (urlPattern.test(comment) == true) {
                                             return <a href={comment} target={"_blank"}><Txt>{comment}</Txt></a>
-                                        }else{
-                                            return <Txt dangerouslySetInnerHTML={{ __html: replaceCommentToTxtLink(comment) }}></Txt>
+                                        } else {
+                                            return <Txt
+                                                dangerouslySetInnerHTML={{__html: replaceCommentToTxtLink(comment)}}></Txt>
                                         }
                                     })}
                                 </div>
                             </div>
                         ))}
-                        {/*<div className={[styles.messageBlock]}>*/}
-                        {/*    テキスト,<br/>*/}
-                        {/*    テキスト,<br/>*/}
-                        {/*    テキスト*/}
-                        {/*</div>*/}
                     </div>
                 </div>
             </div>
